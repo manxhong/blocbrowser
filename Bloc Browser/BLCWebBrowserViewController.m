@@ -158,13 +158,13 @@
 #pragma mark - UITextFieldDelegate
 
 -(void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didSelectButtonWithTitle:(NSString *)title {
-    if([title isEqual:NSLocalizedString(@"Back", @"Back command")]){
+    if([title isEqual:kBLCWebBrowserBackString]){
         [self.webview goBack];
-    } else if ([title isEqual:NSLocalizedString(@"Forward", @"Forward command")]){
+    } else if ([title isEqual:kBLCWebBrowserForwardString]){
         [self.webview goForward];
-    } else if ([title isEqual:NSLocalizedString(@"Stop", @"Stop command")]){
+    } else if ([title isEqual:kBLCWebBrowserStopString]){
         [self.webview stopLoading];
-    } else if ([title isEqual:NSLocalizedString(@"Refresh", @"Reload command")]){
+    } else if ([title isEqual:kBLCWebBrowserRefreshString]){
         [self.webview reload];
     }
 }
