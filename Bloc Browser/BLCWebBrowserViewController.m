@@ -152,7 +152,10 @@
     //    thisButton.frame = CGRectMake(currectButtonX, CGRectGetMaxY(self.webview.frame), buttonWidth, itemHeight);
     //    currectButtonX += buttonWidth;
     //}
-    self.awesomeToolbar.frame = CGRectMake(20, 100, 280, 60);
+    if (self.awesomeToolbar.frame.size.width == 0){
+        self.awesomeToolbar.frame = CGRectMake(20, 100, 280, 60);
+    }
+
 }
 
 #pragma mark - UITextFieldDelegate
@@ -177,7 +180,7 @@
     NSURL*URL= [NSURL URLWithString:URLString];
     
     NSRange spaceRange = [URLString rangeOfString:@" "];
-    
+ //awesome-colorful-toolbar
     
     if (spaceRange.length > 0) {
         NSString *replaceSpaceSentense = [URLString stringByReplacingCharactersInRange:spaceRange withString:@"+"];
@@ -220,6 +223,45 @@
     self.frameCount--;
 }
 
+-(void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToPanWithOffset:(CGPoint)offset {
+    CGPoint startingPoint = toolbar.frame.origin;
+    CGPoint newPoint = CGPointMake(startingPoint.x + offset.x, startingPoint.y + offset.y);
+    
+    CGRect potentialNewFrame = CGRectMake(newPoint.x, newPoint.y, CGRectGetWidth(toolbar.frame), CGRectGetHeight(toolbar.frame));
+    if (CGRectContainsRect(self.view.bounds, potentialNewFrame)) {
+        toolbar.frame = potentialNewFrame;
+    }
+}
+
+-(void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToPinchWithScale:(CGFloat)pinch {
+
+    CGAffineTransform currentTransform = CGAffineTransformIdentity;
+    CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, pinch, pinch);
+    toolbar.transform = newTransform;
+    
+    
+    //    CGRect bounds = toolbar.bounds;
+    //
+    //    const CGFloat kMaxScale = 10.0;
+    //    const CGFloat kMinScale = 1.0;
+    //    pinch = MIN(pinch, kMaxScale /CGRectGetHeight(bounds));
+    //    pinch = MAX(pinch, kMinScale /CGRectGetHeight(bounds));
+    //    pinch  = MIN(pinch, kMaxScale/CGRectGetWidth(bounds));
+    //    pinch  = MAX(pinch, kMinScale/CGRectGetWidth(bounds));
+    //    CGSize startingScale = toolbar.frame.size;
+    //    CGSize newScale = CGSizeMake(startingScale.width *pinch, startingScale.height *pinch);
+    //    CGRect potentialNewSize = CGRectMake(toolbar.frame.origin.x, toolbar.frame.origin.y , newScale.width, newScale.height);
+//    newScale.height = MIN(newScale.height, kMaxScale/startingScale.height);
+//    newScale.width = MIN(newScale.width, kMaxScale/startingScale.width);
+//    newScale.height = MAX(newScale.height, kMinScale/startingScale.height);
+//    newScale.width  = MAX(newScale.width,   kMinScale/startingScale.width);
+//    toolbar.frame = potentialNewSize;
+    
+    
+    
+}
+
+
 #pragma mark - Miscellaneous
 
 -(void) updateButtonsAndTitle {
@@ -240,11 +282,17 @@
     //self.backButton.enabled = [self.webview canGoBack];
     //self.forwardButton.enabled = [self.webview canGoForward];
     //self.stopButton.enabled = self.frameCount > 0;
+
     //self.reloadButton.enabled = self.webview.request.URL && self.frameCount ==0;
-    [self.awesomeToolbar setEnabled:[self.webview canGoBack] forButtonWithTitle:kBLCWebBrowserBackString];
-    [self.awesomeToolbar setEnabled:[self.webview canGoForward] forButtonWithTitle:kBLCWebBrowserForwardString];
-    [self.awesomeToolbar setEnabled:self.frameCount>0 forButtonWithTitle:kBLCWebBrowserStopString];
-    [self.awesomeToolbar setEnabled:self.webview.request.URL && self.frameCount ==0 forButtonWithTitle:kBLCWebBrowserRefreshString];
+    [self.awesomeToolbar addTarget:self.webview forButtonWithTitle:kBLCWebBrowserBackString andAction:@selector(goBack)setEnabled:[self.webview canGoBack]];
+    [self.awesomeToolbar addTarget:self.webview forButtonWithTitle:kBLCWebBrowserForwardString andAction:@selector(goForward)setEnabled:[self.webview canGoForward]];
+    [self.awesomeToolbar addTarget:self.webview forButtonWithTitle:kBLCWebBrowserStopString andAction:@selector(stopLoading)setEnabled:self.frameCount>0];
+    [self.awesomeToolbar addTarget:self.webview forButtonWithTitle:kBLCWebBrowserRefreshString andAction:@selector(reload)setEnabled:self.webview.request.URL && self.frameCount == 0];
+    
+//    [self.awesomeToolbar setEnabled:[self.webview canGoBack] forButtonWithTitle:kBLCWebBrowserBackString];
+//    [self.awesomeToolbar setEnabled:[self.webview canGoForward] forButtonWithTitle:kBLCWebBrowserForwardString];
+//    [self.awesomeToolbar setEnabled:self.frameCount>0 forButtonWithTitle:kBLCWebBrowserStopString];
+//    [self.awesomeToolbar setEnabled:self.webview.request.URL && self.frameCount ==0 forButtonWithTitle:kBLCWebBrowserRefreshString];
 }
 
 

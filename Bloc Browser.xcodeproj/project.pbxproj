@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C6DE88B1A805B610070A936 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C6DE88A1A805B610070A936 /* Default-568h@2x.png */; };
 		1CB86C561A6CFA490070738B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB86C551A6CFA490070738B /* main.m */; };
 		1CB86C591A6CFA490070738B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB86C581A6CFA490070738B /* AppDelegate.m */; };
 		1CB86C5C1A6CFA490070738B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB86C5B1A6CFA490070738B /* ViewController.m */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C6DE88A1A805B610070A936 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1CB86C501A6CFA490070738B /* Bloc Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bloc Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CB86C541A6CFA490070738B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CB86C551A6CFA490070738B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		1CB86C471A6CFA490070738B = {
 			isa = PBXGroup;
 			children = (
+				1C6DE88A1A805B610070A936 /* Default-568h@2x.png */,
 				1CB86C521A6CFA490070738B /* Bloc Browser */,
 				1CB86C6C1A6CFA4A0070738B /* Bloc BrowserTests */,
 				1CB86C511A6CFA490070738B /* Products */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CB86C611A6CFA490070738B /* Images.xcassets in Resources */,
+				1C6DE88B1A805B610070A936 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
